@@ -1,25 +1,20 @@
 package com.semisoft.robots.Services;
 
 import com.google.gson.annotations.SerializedName;
+import com.semisoft.robots.Domain.User;
 
 public class ServerResponse {
     @SerializedName("isValide")
     boolean isValide;
     @SerializedName("message")
     String message;
-    @SerializedName("email")
-    String email;
-    @SerializedName("firstname")
-    String firstname;
-    @SerializedName("lastname")
-    String lastname;
+    @SerializedName("user")
+    User user;
 
-    public ServerResponse(boolean isValide, String message, String email, String firstname, String lastname) {
+    public ServerResponse(boolean isValide, String message, User user) {
         this.isValide = isValide;
         this.message = message;
-        this.email = email;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.user = user;
     }
 
     public boolean isValide() {
@@ -38,27 +33,11 @@ public class ServerResponse {
         this.message = message;
     }
 
-    public String getEmail() {
-        return email;
+    public User getUser() {
+        return user;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

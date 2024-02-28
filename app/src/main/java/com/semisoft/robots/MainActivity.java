@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText password;
     private CheckBox remember_me;
     private Button login;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
