@@ -1,8 +1,13 @@
 package com.semisoft.robots.Domain;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
+    @SerializedName("firstname")
     private String firstname;
+    @SerializedName("lastname")
     private String lastname;
+    @SerializedName("email")
     private String email;
 
     private Boolean stayLogged = false;
