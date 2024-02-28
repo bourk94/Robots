@@ -41,6 +41,7 @@
             android:fontFamily="@font/poppins"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
+            android:lineSpacingExtra="0sp"
             android:padding="16dp"
             android:textColor="@color/off_black"
             android:textColorHint="@color/black40" />
@@ -49,7 +50,7 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="0dp"
             android:background="@drawable/input_background"
             android:ems="10"
             android:fontFamily="@font/poppins"
@@ -59,15 +60,27 @@
             android:textColor="@color/off_black"
             android:textColorHint="@color/black40" />
 
-        <Button
+        <android.widget.CheckBox
+            android:id="@+id/remember_me"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@drawable/checkbox_bg"
+            android:fontFamily="@font/poppins"
+            android:text="@string/remember_me"
+            android:padding="16dp"/>
+
+        <android.widget.Button
             android:id="@+id/button"
+            style="@android:style/Animation.Translucent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:fontFamily="@font/poppins"
-            android:textSize="16sp"
+            android:fontFamily="@font/poppins_semibold"
             android:padding="16dp"
-            android:text="@string/login" />
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>

@@ -3,7 +3,6 @@ package com.semisoft.robots.Services;
 import com.google.gson.annotations.SerializedName;
 
 public class ServerResponse {
-
     @SerializedName("isValide")
     boolean isValide;
     @SerializedName("message")
