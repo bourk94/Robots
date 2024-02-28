@@ -68,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 @Override
                 public void onFailure(Call<ServerResponse> call, Throwable t) {
-
+                    Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 }
-                });
+        });
     }
 
 

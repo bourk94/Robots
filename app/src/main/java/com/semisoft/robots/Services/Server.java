@@ -1,10 +1,12 @@
 package com.semisoft.robots.Services;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 public interface Server {
     @POST("login.php")
-    Call<ServerResponse> login(@Query("email") String email, @Query("password") String password);
+    @FormUrlEncoded
+    Call<ServerResponse> login(@Field("email") String email, @Field("password") String password);
 }
