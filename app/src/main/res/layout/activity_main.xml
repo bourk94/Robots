@@ -70,7 +70,7 @@
             android:padding="16dp"/>
 
         <android.widget.Button
-            android:id="@+id/button"
+            android:id="@+id/login"
             style="@android:style/Animation.Translucent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
