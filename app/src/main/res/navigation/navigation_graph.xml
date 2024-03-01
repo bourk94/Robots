@@ -7,16 +7,32 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.semisoft.robots.loginFragment"
+        android:name="com.semisoft.robots.Fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_roverRemoteFragment"
             app:destination="@id/roverRemoteFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_jamalRemoteFragment"
+            app:destination="@id/jamalRemoteFragment" />
     </fragment>
     <fragment
         android:id="@+id/roverRemoteFragment"
-        android:name="com.semisoft.robots.RoverRemoteFragment"
+        android:name="com.semisoft.robots.Fragments.RoverRemoteFragment"
         android:label="fragment_rover_remote"
-        tools:layout="@layout/fragment_rover_remote" />
+        tools:layout="@layout/fragment_rover_remote" >
+        <action
+            android:id="@+id/action_roverRemoteFragment_to_jamalRemoteFragment"
+            app:destination="@id/jamalRemoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/jamalRemoteFragment"
+        android:name="com.semisoft.robots.Fragments.JamalRemoteFragment"
+        android:label="fragment_jamal_remote2"
+        tools:layout="@layout/fragment_jamal_remote2" >
+        <action
+            android:id="@+id/action_jamalRemoteFragment_to_roverRemoteFragment"
+            app:destination="@id/roverRemoteFragment" />
+    </fragment>
 </navigation>
