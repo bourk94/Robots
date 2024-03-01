@@ -9,5 +9,14 @@
         android:id="@+id/loginFragment"
         android:name="com.semisoft.robots.loginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_roverRemoteFragment"
+            app:destination="@id/roverRemoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/roverRemoteFragment"
+        android:name="com.semisoft.robots.RoverRemoteFragment"
+        android:label="fragment_rover_remote"
+        tools:layout="@layout/fragment_rover_remote" />
 </navigation>
