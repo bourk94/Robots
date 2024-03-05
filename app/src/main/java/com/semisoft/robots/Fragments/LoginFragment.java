@@ -50,9 +50,18 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
 
-        NavController controller = Navigation.findNavController(view);
-        controller.navigate(R.id.from_login_to_dawgmobile);
+        email = view.findViewById(R.id.email);
+        password = view.findViewById(R.id.password);
+        remember_me = view.findViewById(R.id.remember_me);
+        login = view.findViewById(R.id.login);
+        login.setOnClickListener(v -> login(v));
+
+        if (preferences.getBoolean("remember_me", false)) {
+            NavController controller = Navigation.findNavController(view);
+            controller.navigate(R.id.jamalFragment);
+        }
     }
 
     private String hashPassword(String password){
@@ -81,7 +90,10 @@ public class LoginFragment extends Fragment {
                     editor.putBoolean("remember_me", remember_me.isChecked());
                     editor.commit();
                     NavController controller = Navigation.findNavController(v);
-                    controller.navigate(R.id.from_login_to_dawgmobile);
+                    controller.navigate(R.id.from_login_to_jamal);
+                }
+                else {
+                    Toast.makeText(getContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
