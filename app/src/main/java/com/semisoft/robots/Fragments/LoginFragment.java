@@ -1,5 +1,7 @@
 package com.semisoft.robots.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +34,7 @@ public class LoginFragment extends Fragment {
     private EditText password;
     private CheckBox remember_me;
     private Button login;
+    private SharedPreferences preferences;
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -46,6 +50,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         NavController controller = Navigation.findNavController(view);
         controller.navigate(R.id.from_login_to_dawgmobile);
     }
@@ -72,12 +77,16 @@ public class LoginFragment extends Fragment {
                 ServerResponse serverResponse = response.body();
                 assert serverResponse != null;
                 if (serverResponse.isValide()) {
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putBoolean("remember_me", remember_me.isChecked());
+                    editor.commit();
                     NavController controller = Navigation.findNavController(v);
                     controller.navigate(R.id.from_login_to_dawgmobile);
                 }
             }
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "Erreur de connexion", Toast.LENGTH_SHORT).show();
             }
         });
     }
