@@ -1,0 +1,3 @@
+<style name="RoundedButton" parent="Widget.AppCompat.Button">
+    <item name="android:background">@drawable/button_background</item>
+</style>

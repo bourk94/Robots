@@ -11,28 +11,28 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_roverRemoteFragment"
-            app:destination="@id/roverRemoteFragment" />
+            android:id="@+id/from_login_to_dawgmobile"
+            app:destination="@id/dawgmobileFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_jamalRemoteFragment"
-            app:destination="@id/jamalRemoteFragment" />
+            android:id="@+id/from_login_to_jamal"
+            app:destination="@id/jamalFragment" />
     </fragment>
     <fragment
-        android:id="@+id/roverRemoteFragment"
-        android:name="com.semisoft.robots.Fragments.RoverRemoteFragment"
-        android:label="fragment_rover_remote"
-        tools:layout="@layout/fragment_rover_remote" >
+        android:id="@+id/dawgmobileFragment"
+        android:name="com.semisoft.robots.Fragments.DawgMobileFragment"
+        android:label="dawgmobile_fragment"
+        tools:layout="@layout/fragment_jamal">
         <action
-            android:id="@+id/action_roverRemoteFragment_to_jamalRemoteFragment"
-            app:destination="@id/jamalRemoteFragment" />
+            android:id="@+id/from_dawgmobile_to_jamal"
+            app:destination="@id/jamalFragment" />
     </fragment>
     <fragment
-        android:id="@+id/jamalRemoteFragment"
-        android:name="com.semisoft.robots.Fragments.JamalRemoteFragment"
-        android:label="fragment_jamal_remote2"
-        tools:layout="@layout/fragment_jamal_remote2" >
+        android:id="@+id/jamalFragment"
+        android:name="com.semisoft.robots.Fragments.JamalFragment"
+        android:label="fragment_jamal"
+        tools:layout="@layout/fragment_dawgmobile">
         <action
-            android:id="@+id/action_jamalRemoteFragment_to_roverRemoteFragment"
-            app:destination="@id/roverRemoteFragment" />
+            android:id="@+id/from_jamal_to_dawgmobile"
+            app:destination="@id/dawgmobileFragment" />
     </fragment>
 </navigation>

@@ -46,11 +46,8 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        email = view.findViewById(R.id.email);
-        password = view.findViewById(R.id.password);
-        remember_me = view.findViewById(R.id.remember_me);
-        login = view.findViewById(R.id.login);
-        login.setOnClickListener(v -> login(v));
+        NavController controller = Navigation.findNavController(view);
+        controller.navigate(R.id.from_login_to_dawgmobile);
     }
 
     private String hashPassword(String password){
@@ -73,10 +70,10 @@ public class LoginFragment extends Fragment {
             @Override
             public void onResponse(@NonNull Call<ServerResponse> call, @NonNull Response<ServerResponse> response) {
                 ServerResponse serverResponse = response.body();
+                assert serverResponse != null;
                 if (serverResponse.isValide()) {
                     NavController controller = Navigation.findNavController(v);
-                    controller.navigate(R.id.action_loginFragment_to_roverRemoteFragment);
-                } else {
+                    controller.navigate(R.id.from_login_to_dawgmobile);
                 }
             }
             @Override
