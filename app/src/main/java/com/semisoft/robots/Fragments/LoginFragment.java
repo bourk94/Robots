@@ -1,5 +1,7 @@
 package com.semisoft.robots.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +34,7 @@ public class LoginFragment extends Fragment {
     private EditText password;
     private CheckBox remember_me;
     private Button login;
+    private SharedPreferences preferences;
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -46,11 +50,18 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+
         email = view.findViewById(R.id.email);
         password = view.findViewById(R.id.password);
         remember_me = view.findViewById(R.id.remember_me);
         login = view.findViewById(R.id.login);
         login.setOnClickListener(v -> login(v));
+
+        if (preferences.getBoolean("remember_me", false)) {
+            NavController controller = Navigation.findNavController(view);
+            controller.navigate(R.id.jamalRemoteFragment);
+        }
     }
 
     private String hashPassword(String password){
@@ -74,13 +85,19 @@ public class LoginFragment extends Fragment {
             public void onResponse(@NonNull Call<ServerResponse> call, @NonNull Response<ServerResponse> response) {
                 ServerResponse serverResponse = response.body();
                 if (serverResponse.isValide()) {
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putBoolean("remember_me", remember_me.isChecked());
+                    editor.commit();
                     NavController controller = Navigation.findNavController(v);
                     controller.navigate(R.id.action_loginFragment_to_roverRemoteFragment);
-                } else {
+                } else
+                {
+                    Toast.makeText(getContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "Erreur de connexion", Toast.LENGTH_SHORT).show();
             }
         });
     }
