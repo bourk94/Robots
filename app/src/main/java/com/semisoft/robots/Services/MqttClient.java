@@ -12,13 +12,16 @@ public class MqttClient {
    private Mqtt5Client client;
    private CompletableFuture<Mqtt5ConnAck> connAckFuture;
    private String serverAddress;
+   private int port;
 
-    public MqttClient(String serverAddress) {
+    public MqttClient(String serverAddress, int port) {
         this.client = Mqtt5Client.builder()
                 .identifier(UUID.randomUUID().toString())
                 .serverHost(serverAddress)
+                .serverPort(port)
                 .build();
         this.connAckFuture = client.toAsync().connect();
+        this.port = port;
         this.serverAddress = serverAddress;
     }
 
@@ -89,5 +92,13 @@ public class MqttClient {
 
     public void setConnAckFuture(CompletableFuture<Mqtt5ConnAck> connAckFuture) {
         this.connAckFuture = connAckFuture;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 }
