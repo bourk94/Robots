@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="32dp"
     tools:context=".Fragments.JamalFragment">
@@ -155,7 +156,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/grey_button_bg"
                 android:orientation="horizontal">
 
                 <ImageButton

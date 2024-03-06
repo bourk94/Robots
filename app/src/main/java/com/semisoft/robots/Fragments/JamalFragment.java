@@ -2,6 +2,7 @@ package com.semisoft.robots.Fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +14,27 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.semisoft.robots.Domain.Action;
 import com.semisoft.robots.R;
+import com.semisoft.robots.Utils.ActionRVAdapter;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JamalFragment extends Fragment {
     private ImageButton toDawg, logout;
     private SharedPreferences preferences;
+    private RecyclerView rv;
+    private List<Action> actions;
 
     public JamalFragment() {
         // Required empty public constructor
@@ -53,7 +69,6 @@ public class JamalFragment extends Fragment {
                 controller.navigate(R.id.from_jamal_to_dawgmobile);
             }
         });
-
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,5 +80,44 @@ public class JamalFragment extends Fragment {
             }
         });
 
+        actions = initActions();
+
+        rv = view.findViewById(R.id.rv);
+        rv.setHasFixedSize(true);
+        rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        rv.setAdapter(new ActionRVAdapter(actions));
+    }
+
+    private List<Action> initActions() {
+        List<Action> fileActions = new ArrayList<Action>();
+
+        try {
+            Resources resources = getResources();
+            InputStream inputStream = resources.openRawResource(R.raw.actions);
+
+            int size = inputStream.available();
+            byte[] buffer = new byte[size];
+            inputStream.read(buffer);
+            inputStream.close();
+
+            String jsonString = new String(buffer, StandardCharsets.UTF_8);
+
+            Gson gson = new Gson();
+            Type actionListType = new TypeToken<List<Action>>() {}.getType();
+            fileActions = gson.fromJson(jsonString, actionListType);
+
+            List<Action> filteredActions = new ArrayList<Action>();
+            for (Action action : fileActions) {
+                if (action.getRobot().equals("jamal")) {
+                    filteredActions.add(action);
+                }
+            }
+
+            return filteredActions;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return fileActions;
     }
 }
