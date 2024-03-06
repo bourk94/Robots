@@ -1,5 +1,7 @@
 package com.semisoft.robots.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +17,8 @@ import androidx.navigation.Navigation;
 import com.semisoft.robots.R;
 
 public class JamalFragment extends Fragment {
-    private ImageButton toDawg;
+    private ImageButton toDawg, logout;
+    private SharedPreferences preferences;
 
     public JamalFragment() {
         // Required empty public constructor
@@ -39,8 +42,10 @@ public class JamalFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
 
         toDawg = view.findViewById(R.id.toDawg);
+        logout = view.findViewById(R.id.jamal_logout);
         toDawg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,5 +53,17 @@ public class JamalFragment extends Fragment {
                 controller.navigate(R.id.from_jamal_to_dawgmobile);
             }
         });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("remember_me", false);
+                editor.commit();
+                NavController controller = Navigation.findNavController(view);
+                controller.navigate(R.id.loginFragment);
+            }
+        });
+
     }
 }
