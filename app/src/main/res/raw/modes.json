@@ -1,20 +1,5 @@
 [
   {
-    "label":  "Avancer",
-    "name": "forward",
-    "robot": "jamal"
-  },
-  {
-    "label":  "Reculer",
-    "name": "backward",
-    "robot": "jamal"
-  },
-  {
-    "label":  "Arrêter",
-    "name": "stop",
-    "robot": "jamal"
-  },
-  {
     "label":  "Gymbro",
     "name": "use_gymbro",
     "robot": "jamal"
@@ -42,6 +27,11 @@
   {
     "label":  "Chef Bandit",
     "name": "use_bandit",
+    "robot": "jamal"
+  },
+  {
+    "label": "Hurry",
+    "name": "use_hurry",
     "robot": "jamal"
   }
 ]

@@ -93,7 +93,7 @@ public class JamalFragment extends Fragment {
 
         try {
             Resources resources = getResources();
-            InputStream inputStream = resources.openRawResource(R.raw.actions);
+            InputStream inputStream = resources.openRawResource(R.raw.modes);
 
             int size = inputStream.available();
             byte[] buffer = new byte[size];
