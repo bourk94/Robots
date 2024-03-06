@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.semisoft.robots.Domain.Action;
 import com.semisoft.robots.R;
+import com.semisoft.robots.Services.MqttClient;
 import com.semisoft.robots.Utils.ActionRVAdapter;
 
 import java.io.IOException;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JamalFragment extends Fragment {
-    private ImageButton toDawg, logout;
+    private ImageButton toDawg, logout, jamal_forward, jamal_backward;
     private SharedPreferences preferences;
     private RecyclerView rv;
     private List<Action> actions;
@@ -62,6 +63,11 @@ public class JamalFragment extends Fragment {
 
         toDawg = view.findViewById(R.id.toDawg);
         logout = view.findViewById(R.id.jamal_logout);
+        jamal_forward = view.findViewById(R.id.jamal_forward);
+
+        MqttClient client = new MqttClient("172.16.87.53", 1883);
+        client.connect();
+
         toDawg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +85,15 @@ public class JamalFragment extends Fragment {
                 controller.navigate(R.id.loginFragment);
             }
         });
+
+        jamal_forward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                client.sendMessage("jamal_remote", "forward");
+            }
+            });
+
+        
 
         actions = initActions();
 
