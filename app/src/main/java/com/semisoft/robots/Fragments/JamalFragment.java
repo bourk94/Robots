@@ -1,10 +1,12 @@
 package com.semisoft.robots.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -32,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JamalFragment extends Fragment {
-    private ImageButton toDawg, logout, jamal_forward, jamal_backward;
+    private ImageButton toDawg, logout, jamal_forward, jamal_back, jamal_rot_left, jamal_rot_right;
     private SharedPreferences preferences;
     private RecyclerView rv;
     private List<Action> actions;
@@ -56,6 +58,7 @@ public class JamalFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_jamal, container, false);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -64,6 +67,9 @@ public class JamalFragment extends Fragment {
         toDawg = view.findViewById(R.id.toDawg);
         logout = view.findViewById(R.id.jamal_logout);
         jamal_forward = view.findViewById(R.id.jamal_forward);
+        jamal_back = view.findViewById(R.id.jamal_back);
+        jamal_rot_left = view.findViewById(R.id.jamal_rot_left);
+        jamal_rot_right = view.findViewById(R.id.jamal_rot_right);
 
         MqttClient client = new MqttClient("172.16.87.53", 1883);
         client.connect();
@@ -86,12 +92,54 @@ public class JamalFragment extends Fragment {
             }
         });
 
-        jamal_forward.setOnClickListener(new View.OnClickListener() {
+        jamal_forward.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                client.sendMessage("jamal_remote", "forward");
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    client.sendMessage("jamal_remote", "stop");
+                } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    client.sendMessage("jamal_remote", "forward");
+                }
+
+                return false;
             }
-            });
+        });
+        jamal_back.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    client.sendMessage("jamal_remote", "stop");
+                } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    client.sendMessage("jamal_remote", "back");
+                }
+
+                return false;
+            }
+        });
+        jamal_rot_left.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    client.sendMessage("jamal_remote", "stop");
+                } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    client.sendMessage("jamal_remote", "rot_left");
+                }
+
+                return false;
+            }
+        });
+        jamal_rot_right.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    client.sendMessage("jamal_remote", "stop");
+                } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    client.sendMessage("jamal_remote", "rot_right");
+                }
+
+                return false;
+            }
+        });
 
         
 
@@ -100,7 +148,7 @@ public class JamalFragment extends Fragment {
         rv = view.findViewById(R.id.rv);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv.setAdapter(new ActionRVAdapter(actions));
+        rv.setAdapter(new ActionRVAdapter(actions, client));
     }
 
     private List<Action> initActions() {

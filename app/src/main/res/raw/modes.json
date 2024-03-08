@@ -33,5 +33,10 @@
     "label": "Hurry",
     "name": "use_hurry",
     "robot": "jamal"
+  },
+  {
+    "label": "Sup Dawg",
+    "name": "use_supdawg",
+    "robot": "jamal"
   }
 ]

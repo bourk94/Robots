@@ -62,7 +62,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imageButton11"
+                android:id="@+id/rot_left"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
@@ -71,7 +71,7 @@
                 android:src="@drawable/rot_left" />
 
             <ImageButton
-                android:id="@+id/imageButton12"
+                android:id="@+id/rot_right"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
@@ -92,7 +92,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/north_west"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"
@@ -101,7 +101,7 @@
                     android:src="@drawable/north_west" />
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/north"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"
@@ -110,7 +110,7 @@
                     android:src="@drawable/north" />
 
                 <ImageButton
-                    android:id="@+id/imageButton4"
+                    android:id="@+id/north_east"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"
@@ -126,7 +126,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/imageButton5"
+                    android:id="@+id/west"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"
@@ -143,7 +143,7 @@
                     android:src="@drawable/center" />
 
                 <ImageButton
-                    android:id="@+id/imageButton7"
+                    android:id="@+id/east"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"
@@ -159,7 +159,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/imageButton8"
+                    android:id="@+id/south_west"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"
@@ -168,7 +168,7 @@
                     android:src="@drawable/south_west" />
 
                 <ImageButton
-                    android:id="@+id/imageButton9"
+                    android:id="@+id/south"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"
@@ -177,7 +177,7 @@
                     android:src="@drawable/south" />
 
                 <ImageButton
-                    android:id="@+id/imageButton10"
+                    android:id="@+id/south_east"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"

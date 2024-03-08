@@ -51,6 +51,31 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/jamal_rot_left"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/grey_button_bg"
+            android:src="@drawable/rot_left" />
+
+        <ImageButton
+            android:id="@+id/jamal_rot_right"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/grey_button_bg"
+            android:src="@drawable/rot_right" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginBottom="16dp"
         android:orientation="horizontal">
@@ -65,7 +90,7 @@
             android:src="@drawable/north" />
 
         <ImageButton
-            android:id="@+id/jamal_backward"
+            android:id="@+id/jamal_back"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="4dp"

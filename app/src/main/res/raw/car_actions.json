@@ -1,0 +1,42 @@
+[
+  {
+    "label":  "north_west",
+    "name": "q",
+    "robot": "dawgmobile"
+  },
+  {
+    "label":  "north",
+    "name": "w",
+    "robot": "dawgmobile"
+  },
+  {
+    "label":  "north_east",
+    "name": "e",
+    "robot": "dawgmobile"
+  },
+  {
+    "label":  "west",
+    "name": "q",
+    "robot": "dawgmobile"
+  },
+  {
+    "label":  "north",
+    "name": "w",
+    "robot": "dawgmobile"
+  },
+  {
+    "label":  "north_east",
+    "name": "e",
+    "robot": "dawgmobile"
+  },
+  {
+    "label":  "south_west",
+    "name": "z",
+    "robot": "dawgmobile"
+  },
+  {
+    "label":  "south_east",
+    "name": "c",
+    "robot": "dawgmobile"
+  }
+]
