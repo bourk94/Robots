@@ -60,22 +60,6 @@ public class LoginFragment extends Fragment {
             controller.navigate(R.id.jamalFragment);
         }
     }
-
-//    private String hashPassword(String password){
-//        try {
-//            MessageDigest md = MessageDigest.getInstance("SHA-256");
-//            byte[] hash = md.digest(password.getBytes());
-//            StringBuilder sb = new StringBuilder();
-//            for (byte b : hash) {
-//                sb.append(String.format("%02x", b));
-//            }
-//            return sb.toString();
-//        } catch (NoSuchAlgorithmException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
-
     public void login(View v){
         Server server = RetrofitInstance.getInstance().create(Server.class);
         Call<ServerResponse> call = server.login(email.getText().toString(), password.getText().toString());
