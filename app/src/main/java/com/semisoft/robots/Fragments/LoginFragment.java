@@ -75,14 +75,16 @@ public class LoginFragment extends Fragment {
                     NavController controller = Navigation.findNavController(v);
                     controller.navigate(R.id.from_login_to_jamal);
                 }
-                if (serverResponse.getMessage().getFailure() != null) {
-                    Toast.makeText(getContext(), serverResponse.getMessage().getFailure(), Toast.LENGTH_LONG).show();
-                }
-                if (serverResponse.getMessage().getEmail() != null) {
-                    email.setError(serverResponse.getMessage().getEmail()[0]);
-                }
-                if (serverResponse.getMessage().getPassword() != null) {
-                    password.setError(serverResponse.getMessage().getPassword()[0]);
+                else {
+                    if (serverResponse.getMessage().getFailure() != null) {
+                        Toast.makeText(getContext(), serverResponse.getMessage().getFailure(), Toast.LENGTH_LONG).show();
+                    }
+                    if (serverResponse.getMessage().getEmail() != null) {
+                        email.setError(serverResponse.getMessage().getEmail()[0]);
+                    }
+                    if (serverResponse.getMessage().getPassword() != null) {
+                        password.setError(serverResponse.getMessage().getPassword()[0]);
+                    }
                 }
             }
             @Override
