@@ -10,11 +10,6 @@
     "robot": "jamal"
   },
   {
-    "label":  "Cat",
-    "name": "use_meow",
-    "robot": "jamal"
-  },
-  {
     "label":  "Goggins",
     "name": "use_goggins",
     "robot": "jamal"
@@ -22,16 +17,6 @@
   {
     "label":  "Waifu",
     "name": "use_waifu",
-    "robot": "jamal"
-  },
-  {
-    "label":  "Chef Bandit",
-    "name": "use_bandit",
-    "robot": "jamal"
-  },
-  {
-    "label": "Hurry",
-    "name": "use_hurry",
     "robot": "jamal"
   },
   {
