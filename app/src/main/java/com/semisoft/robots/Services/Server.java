@@ -6,7 +6,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 public interface Server {
-    @POST("login.php")
+    @POST("api/login")
     @FormUrlEncoded
     Call<ServerResponse> login(@Field("email") String email, @Field("password") String password);
 }

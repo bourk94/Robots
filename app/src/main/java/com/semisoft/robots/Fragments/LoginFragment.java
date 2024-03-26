@@ -22,9 +22,6 @@ import com.semisoft.robots.Services.RetrofitInstance;
 import com.semisoft.robots.Services.Server;
 import com.semisoft.robots.Services.ServerResponse;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -63,23 +60,9 @@ public class LoginFragment extends Fragment {
             controller.navigate(R.id.jamalFragment);
         }
     }
-
-    private String hashPassword(String password){
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] hash = md.digest(password.getBytes());
-            StringBuilder sb = new StringBuilder();
-            for (byte b : hash) {
-                sb.append(String.format("%02x", b));
-            }
-            return sb.toString();
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
     public void login(View v){
         Server server = RetrofitInstance.getInstance().create(Server.class);
-        Call<ServerResponse> call = server.login(email.getText().toString(), hashPassword(password.getText().toString()));
+        Call<ServerResponse> call = server.login(email.getText().toString(), password.getText().toString());
         call.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(@NonNull Call<ServerResponse> call, @NonNull Response<ServerResponse> response) {
@@ -93,12 +76,20 @@ public class LoginFragment extends Fragment {
                     controller.navigate(R.id.from_login_to_jamal);
                 }
                 else {
-                    Toast.makeText(getContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    if (serverResponse.getMessage().getFailure() != null) {
+                        Toast.makeText(getContext(), serverResponse.getMessage().getFailure(), Toast.LENGTH_LONG).show();
+                    }
+                    if (serverResponse.getMessage().getEmail() != null) {
+                        email.setError(serverResponse.getMessage().getEmail()[0]);
+                    }
+                    if (serverResponse.getMessage().getPassword() != null) {
+                        password.setError(serverResponse.getMessage().getPassword()[0]);
+                    }
                 }
             }
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Toast.makeText(getContext(), "Erreur de connexion", Toast.LENGTH_SHORT).show();
+                System.out.println(t.toString());
             }
         });
     }

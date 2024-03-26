@@ -47,4 +47,5 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment:2.7.7")
     implementation("androidx.navigation:navigation-ui:2.7.7")
     implementation("com.hivemq:hivemq-mqtt-client:1.3.0")
+    implementation ("org.mindrot:jbcrypt:0.4")
 }

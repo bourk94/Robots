@@ -1,17 +1,18 @@
 package com.semisoft.robots.Services;
 
 import com.google.gson.annotations.SerializedName;
+import com.semisoft.robots.Domain.Message;
 import com.semisoft.robots.Domain.User;
 
 public class ServerResponse {
     @SerializedName("isValide")
     boolean isValide;
     @SerializedName("message")
-    String message;
+    Message message;
     @SerializedName("user")
     User user;
 
-    public ServerResponse(boolean isValide, String message, User user) {
+    public ServerResponse(boolean isValide, Message message, User user) {
         this.isValide = isValide;
         this.message = message;
         this.user = user;
@@ -25,11 +26,11 @@ public class ServerResponse {
         isValide = valide;
     }
 
-    public String getMessage() {
+    public Message getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(Message message) {
         this.message = message;
     }
 
